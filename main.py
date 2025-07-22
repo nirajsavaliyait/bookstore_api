@@ -9,3 +9,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 app.include_router(routes.router)
+
+@app.get("/")  # for rendering 
+def read_root():
+    return {"message": "Welcome to the Bookstore API"}

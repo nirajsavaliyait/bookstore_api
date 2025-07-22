@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: bookstore-api
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./bookstore.db
