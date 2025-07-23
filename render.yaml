@@ -9,4 +9,4 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: DATABASE_URL
-        value: sqlite:///./bookstore.db
+        value: postgresql://bookstore_db_qsqc_user:M84vZoIuBG5qbucMTMejRzpb3DiQ17rp@dpg-d1vlbgndiees73bpct0g-a.oregon-postgres.render.com/bookstore_db_qsqc
