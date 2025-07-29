@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.11'
+        }
+    }
     stages {
         stage('Install dependencies') {
             steps {
@@ -13,7 +17,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying your FastAPI app (optional)'
+                echo 'Deploying the application...'
+                // Add deploy logic here
             }
         }
     }
