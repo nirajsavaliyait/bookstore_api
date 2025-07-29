@@ -1,9 +1,10 @@
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, constr
 from typing import List, Optional
+from typing import Annotated
 
 class Bookbase(BaseModel):
-    title : str
+    title : Annotated[str, constr(min_length=1, max_length=100)]
     description : str
 
 
@@ -24,8 +25,8 @@ class BookUpdate(BaseModel):
 # -------------------------------------------------------------------------------------------------------
 
 class Authorbase(BaseModel):
-    name : str
-    email : str
+    name : Annotated[str,constr(min_length=3)]
+    email : EmailStr
 
 class AuthorCreate(Authorbase):
     pass 

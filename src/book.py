@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from models import models
 from schemas.schemas import BookCreate, BookUpdate 
+from fastapi import HTTPException
 
 # Create a new book with a given author_id
 def create_book(db: Session, book: BookCreate, author_id: int):
@@ -27,7 +28,7 @@ def get_books_by_author_id(db: Session, author_id: int):
 def update_book(db: Session, book_id: int, book_update: BookUpdate):  # <- Use BookUpdate here
     db_book = db.query(models.Book).filter(models.Book.id == book_id).first()
     if db_book is None:
-        return None
+        raise HTTPException(status_code=404, detail="Book not found")
     
     if book_update.title is not None:
         db_book.title = book_update.title
